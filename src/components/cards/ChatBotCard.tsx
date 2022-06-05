@@ -4,6 +4,8 @@ import { IoSendOutline } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { chatBotMessagesVar } from "../../apollo";
 import { BsDot } from "react-icons/bs";
+import { MdDeleteForever } from "react-icons/md";
+import { THEME } from "../../constants";
 
 const BotMessage = (props: ChatBotMessagesProps) => {
   const { message, date } = props;
@@ -54,6 +56,7 @@ const WaitingTypingDots = () => {
 export function ChatBotCard(porps: PopupChatBotCardProps) {
   const { id, open, anchorEl, handleClose } = porps;
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [personMessageInput, setPersonMessageInput] = useState<string>("");
   const [isLoadingMessages, setIsLoadingMessages] = useState<boolean>(true);
   const [chatBotMessages, setChatBotMessages] = useState<
     ChatBotMessagesProps[]
@@ -69,14 +72,55 @@ export function ChatBotCard(porps: PopupChatBotCardProps) {
         setIsLoadingMessages(false);
       }, 2000);
       return () => clearInterval(interval);
+    } else {
+      scrollToBottom();
     }
-  }, [isLoadingMessages]);
-
+  }, [isLoadingMessages, chatBotMessages]);
   useEffect(() => {
-    scrollToBottom();
-    setIsLoadingMessages(true);
-    setChatBotMessages(chatBotMessagesVar());
+    if (!isLoadingMessages) {
+      setIsLoadingMessages(true);
+    }
   }, [open]);
+  useEffect(() => {
+    setChatBotMessages(chatBotMessagesVar());
+  }, [chatBotMessages]);
+  const handleSendMessage = () => {
+    setChatBotMessages([
+      ...chatBotMessages,
+      {
+        message: personMessageInput,
+        date: new Date().toLocaleString(),
+        sender: "person",
+      },
+    ]);
+    localStorage.setItem(
+      "chatBotMessages",
+      JSON.stringify([
+        ...chatBotMessages,
+        {
+          message: personMessageInput,
+          date: new Date().toLocaleString(),
+          sender: "person",
+        },
+      ])
+    );
+    chatBotMessagesVar([
+      ...chatBotMessages,
+      {
+        message: personMessageInput,
+        date: new Date().toLocaleString(),
+        sender: "person",
+      },
+    ]);
+
+    setPersonMessageInput("");
+  };
+  const handleClearMessages = () => {
+    localStorage.removeItem("chatBotMessages");
+    chatBotMessagesVar([]);
+    setChatBotMessages([]);
+  };
+
   return (
     <Popover
       id={id}
@@ -101,11 +145,26 @@ export function ChatBotCard(porps: PopupChatBotCardProps) {
       px-5 w-[350px]"
       >
         <header
-          className="p-4 border-gray-400
+          className="p-4 relative flex items-center justify-center flex-row border-gray-400
         border-b-[0.5px]
         text-center"
         >
           <h1 className="text-base font-semibold">JINA</h1>
+
+          <IconButton
+            disabled={chatBotMessages.length === 0}
+            className="absolute right-0 "
+            size="small"
+            onClick={handleClearMessages}
+          >
+            <MdDeleteForever
+              style={{
+                color:
+                  chatBotMessages.length === 0 ? "gray" : THEME.primary.main,
+              }}
+              size={22}
+            />
+          </IconButton>
         </header>
         <main className="flex relative overflow-y-auto scrollbar-hide flex-col flex-1">
           {!isLoadingMessages ? (
@@ -133,8 +192,23 @@ export function ChatBotCard(porps: PopupChatBotCardProps) {
           <div ref={messagesEndRef} />
         </main>
         <footer className="p-4 relative flex flex-row items-center space-x-2">
-          <Input fullWidth placeholder="Enter your question..." type="text" />
-          <IconButton>
+          <Input
+            fullWidth
+            autoFocus
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSendMessage();
+              }
+            }}
+            placeholder="Enter your question..."
+            type="text"
+            value={personMessageInput}
+            onChange={(e) => setPersonMessageInput(e.target.value)}
+          />
+          <IconButton
+            disabled={!personMessageInput}
+            onClick={handleSendMessage}
+          >
             <IoSendOutline />
           </IconButton>
         </footer>

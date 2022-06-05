@@ -7,7 +7,6 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { useReactiveVar } from "@apollo/client";
-import { useRouter } from "next/router";
 import { IMAGES, THEME } from "../../../constants";
 import { chatBotMessagesVar, isDarkModeVar } from "../../../apollo";
 import { MainFooter } from "../Footers";
@@ -24,7 +23,6 @@ export type MainLayoutProps = {
 export function MainLayout(props: MainLayoutProps) {
   const { children } = props;
   const isDark = useReactiveVar(isDarkModeVar);
-  const chatBotMessages = useReactiveVar(chatBotMessagesVar);
   const theme = useMemo(
     () =>
       createTheme({
@@ -46,7 +44,7 @@ export function MainLayout(props: MainLayoutProps) {
         {
           message:
             "Hi, I'm JINA, the CODE ESI Chat Bot. I can help you to find the best course for you. Just type your question and I will try to answer it.",
-          date: "12:00",
+          date: new Date().toLocaleString(),
           sender: "jina",
         },
       ];
