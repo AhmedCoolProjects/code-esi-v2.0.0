@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useMemo, useState } from "react";
+import { MouseEvent, useEffect, useMemo, useRef, useState } from "react";
 import {
   Container,
   createTheme,
@@ -15,6 +15,7 @@ import { LeftLayout } from "./LeftLayout";
 import Image from "next/image";
 import { ChatBotCard } from "../../cards";
 import { ChatBotMessagesProps } from "../../../types";
+import { useRouter } from "next/router";
 
 export type MainLayoutProps = {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ export type MainLayoutProps = {
 export function MainLayout(props: MainLayoutProps) {
   const { children } = props;
   const isDark = useReactiveVar(isDarkModeVar);
+  const router = useRouter();
   const theme = useMemo(
     () =>
       createTheme({
@@ -63,6 +65,11 @@ export function MainLayout(props: MainLayoutProps) {
   const handleCloseChatBotPopup = () => {
     setAnchorEl(null);
   };
+  const mainLayoutPageRef = useRef<HTMLDivElement>(null);
+  // when change path scroll to top
+  useEffect(() => {
+    mainLayoutPageRef.current?.scrollTo(0, 0);
+  }, [router.pathname]);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -71,7 +78,10 @@ export function MainLayout(props: MainLayoutProps) {
           <div className="flex-col h-screen col-span-0 md:col-span-3 hidden md:flex  p-3 border-r-[1px] border-gray-400">
             <LeftLayout />
           </div>
-          <div className="flex-col h-screen scrollbar-custom overflow-y-auto col-span-12 md:col-span-9 p-3 ">
+          <div
+            ref={mainLayoutPageRef}
+            className="flex-col h-screen scrollbar-custom overflow-y-auto col-span-12 md:col-span-9 p-3 "
+          >
             <MainHeader />
             {children}
             <MainFooter />

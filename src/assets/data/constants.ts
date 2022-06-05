@@ -113,11 +113,11 @@ export const ActivitiesData: ActivitiesDataProps[] = [
   },
   {
     id: 4,
-    title: "Visits",
+    title: "Events",
     description:
       "Where we visit the differents entreprises and companies that are in the IT sector to get more informations about there structure and there work process,...",
     icon: MdWorkOutline,
-    link: "visits",
+    link: "events",
   },
   {
     id: 5,
