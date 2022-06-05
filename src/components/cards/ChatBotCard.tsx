@@ -156,7 +156,7 @@ export function ChatBotCard(porps: PopupChatBotCardProps) {
             size="small"
             style={{
               position: "absolute",
-              right,
+              right: 0,
             }}
             onClick={handleClearMessages}
           >
