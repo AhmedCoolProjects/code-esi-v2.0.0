@@ -21,7 +21,10 @@ const PersonMessage = (props: ChatBotMessagesProps) => {
   return (
     <Paper
       elevation={2}
-      className="p-2 my-2 ml-auto bg-slate-800 max-w-[250px]"
+      className="p-2 my-2 ml-auto max-w-[250px]"
+      style={{
+        backgroundColor: "rgb(30 41 59)",
+      }}
     >
       <h1 className="text-sm">{message}</h1>
       <p className="text-right mt-1 w-full text-xs text-zinc-400">{date}</p>
