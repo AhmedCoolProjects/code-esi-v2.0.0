@@ -1,34 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CODE ESI ( **C**lub **O**f **D**ata **E**ngineers - ESI )
 
-## Getting Started
+## About the app
 
-First, run the development server:
+[codeesi.com](https://codeesi.com) the official web app for our IT Club CODE. It contains the summary of all our projects, events, meetings,
+workshops and collaborations.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Used technical skills
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- React JS
+- Next.js
+- MUI
+- MUI-Icons
+- Tailwind CSS
+- Apollo Client
+- Vercel
+- GraphQL
+- Figma
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Pages
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- /
+![image](https://user-images.githubusercontent.com/72823374/152174273-2c33699e-0bc4-4140-a532-04e38bcadbc7.png)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- /about
+![image](https://user-images.githubusercontent.com/72823374/152174764-511f874f-2cb1-4a77-bb65-fd113e78e421.png)
 
-## Learn More
+- /activities
+- /activities/projects
+- /activities/training
+- /activities/sharing-nights
+- /activities/gaming
+- /activities/visits
+- /activities/competitions
+- /activities/collaborations
+![image](https://user-images.githubusercontent.com/72823374/152174658-d53eb3e0-9602-4c58-a4f0-fa9b3327c8a5.png)
 
-To learn more about Next.js, take a look at the following resources:
+- /forms
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Backend structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Check [codeesiapiv3.herokuapp.com](https://codeesiapiv3.herokuapp.com)
 
-## Deploy on Vercel
+`source code: ` [CODE ESI GRAPHQL API](https://github.com/AhmedCoolProjects/CodeESIGraphqlAPI)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Admin dashboard - Manage Club Data -
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check [admin.codeesi.com](https://admin.codeesi.com)
+
+`source code: ` [CODE ESI ADMIN DASHBOARD](https://github.com/AhmedCoolProjects/CodeESIAdminDashboard)
+
+## CODE ESI DOCS
+
+Check documentations for our training classes and projects, summary of our meetings and shring nights, subjects of our collaborations, competitions and more on [docs.codeesi.com](https://docs.codeesi.com)
+
+`source code: ` [CODE ESI DOCS](https://github.com/AhmedCoolProjects/CodeESIDocs)
+
+## Check my portfolio for more
+
+[Ahmed Bargady](https://ahmedbargady.me)

@@ -1,16 +1,26 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
+/* width */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+/* Handle */
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #073664;
+  border-radius: 100vh;
+  border: 2px solid #084177e3;
+}
+
+/* Handle on hover */
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #0a4a8a; 
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
