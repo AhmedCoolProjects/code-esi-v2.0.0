@@ -153,8 +153,11 @@ export function ChatBotCard(porps: PopupChatBotCardProps) {
 
           <IconButton
             disabled={chatBotMessages.length === 0}
-            className="absolute right-0 "
             size="small"
+            style={{
+              position: "absolute",
+              right,
+            }}
             onClick={handleClearMessages}
           >
             <MdDeleteForever
