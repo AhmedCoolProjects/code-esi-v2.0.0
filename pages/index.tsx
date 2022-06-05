@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { MouseEvent, useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import { GET_PEOPLE_BY_CATEGORY } from "../src/apollo";
 import {
   NoPartData,
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
   });
   const [popupId, setPopupId] = useState<string>("");
   const handleClickOpenPopup = (
-    event: MouseEvent<HTMLElement>,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     clickedPerson: PersonDataProps
   ) => {
     setPerson(clickedPerson);
